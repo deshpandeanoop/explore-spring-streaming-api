@@ -18,17 +18,17 @@ public class StreamingController {
     @GetMapping
     public ResponseEntity<StreamingResponseBody> streamContent(HttpServletResponse httpServletResponse) {
         System.out.println("Received streaming request");
-       //httpServletResponse.setContentType("application/octet-stream");
+       httpServletResponse.setContentType("application/json");
        return new ResponseEntity<>(buildStreamingResponseBody(), HttpStatus.OK);
     }
 
     private StreamingResponseBody buildStreamingResponseBody() {
         try {
             return httpResponseStream -> {
-                Files.lines(Paths.get("E:\\dummy-datasets\\archive\\bitstampUSD_1-min_data.csv"))
+                Files.lines(Paths.get("E:\\dummy-datasets\\archive\\random1.json"))
                 .forEach(line -> {
                     try {
-                        //Thread.sleep(200);
+                        Thread.sleep(200);
                         httpResponseStream.write(line.getBytes());
                         httpResponseStream.flush();
                     } catch (Exception ex) { }
