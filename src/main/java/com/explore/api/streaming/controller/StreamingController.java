@@ -18,7 +18,7 @@ public class StreamingController {
     @GetMapping
     public ResponseEntity<StreamingResponseBody> streamContent(HttpServletResponse httpServletResponse) {
         System.out.println("Received streaming request");
-       httpServletResponse.setContentType("application/json");
+       httpServletResponse.setContentType("application/octet-stream");
        return new ResponseEntity<>(buildStreamingResponseBody(), HttpStatus.OK);
     }
 
